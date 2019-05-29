@@ -1,0 +1,27 @@
+web:
+  build: .
+  dockerfile: ./backend/Dockerfile
+  entrypoint: /usr/bin/supervisord -c /etc/supervisor/supervisord.conf -n
+  volumes:
+    - ./:/app
+  links:
+   - postgres
+   - elasticsearch
+  ports:
+   - "8000"
+  environment:
+    - DEBUG=True
+    - DEV=True
+    - DATABASE_URL=postgres://postgres:@postgres:5432/postgres
+    - ELASTICSEARCH_URL=http://elasticsearch:9200
+    - SECRET_KEY=notasecretreplaceme
+
+postgres:
+  image: postgres
+  ports:
+   - "5432:5432"
+
+elasticsearch:
+  image: orchardup/elasticsearch
+  ports:
+    - "9200:9200"
