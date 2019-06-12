@@ -62,18 +62,3 @@ services:
     depends_on:
       - web
     entrypoint: /usr/bin/supervisord -c /etc/supervisor/supervisord.conf -n
-
-  status:
-    image: ${REGISTRY}trydirect/status
-    container_name: docker_status_panel
-    restart: always
-    ports:
-      - "5000:5000"
-    volumes:
-      - ./nginx:/app/destination_conf
-      - ./nginx_original:/app/origin_conf
-      - ./config.json:/app/config.json
-      - /var/run/docker.sock:/var/run/docker.sock
-    env_file:
-      - .env
-

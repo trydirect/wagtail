@@ -30,5 +30,4 @@ RUN wagtail start app
 RUN groupadd -r -g 2000 wagtail; useradd -r -u 2000 -g 2000 -m -c "app account" -d /home/wagtail -s /bin/bash wagtail
 
 WORKDIR /app
-#RUN python manage.py migrate
 EXPOSE 8000
