@@ -1,2 +1,2 @@
-wagtail===2.7.2
+wagtail===2.7.4
 psycopg2-binary
